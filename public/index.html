@@ -22,9 +22,13 @@
             </div>
             <div class="span4">
                 <div class="sidebar">
-                    <h1>Villa 21-24</h1>
-                    <p class="lead">Mapeamos la villa</p>
-                    <div id="infowindow"></div>
+                    <h1>Mapa de actores Villa 21-24</h1>
+                    <p class="lead">Acercándonos a la realidad del barrio</p>
+                    <div id="infowindow">
+                        <p>Este proyecto consiste en el mapeo de más de 100 actores y organizaciones sociales que se sitúan y brindan servicios a la comunidad de la Villa 21.24.</p>
+                        <p>El proceso comenzó  con el dibujo del mapa en “Open Street Map” a mano con todas las manzanas y calles internas, ya que faltaban datos de localización y la cartografía existente no era adecuada para el trabajo.</p>
+                        <p>El segundo paso fue la geolocalización manual de los puntos en este mapa, ya que tampoco se contaba con la ubicación exacta (latitud y longitud). A través de la herramienta del “Resource Map” nos permitió, luego, exportar la latitud y longitud al mapa que habíamos dibujado.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -74,7 +78,7 @@
                 '</div>' +
                 '</div>' +
                 '</div>');
-        console.log("SELECT * FROM manzanas_geojson WHERE id IN(" + manzanasIds.join(",") +")");        //TODO(gb): Remove trace!!!
+
         // Load CartoDB map
         cartodb.createVis('map-canvas', 'http://belbo.cartodb.com/api/v1/viz/manzanas_geojson/viz.json', {
             center_lat: -34.65506257173085,
