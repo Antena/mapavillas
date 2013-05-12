@@ -117,10 +117,9 @@
             center_lat: -34.65506257173085,
             center_lon:  -58.39426517486573,
             zoom: 15,
-            infowindow: true,
+            infowindow: false,
             sql: "SELECT * FROM manzanas_geojson WHERE id IN(" + manzanasIds.join(",") +")"
         }).done(function(vis, layers) {
-                    layers[1].infowindow.set('template', $('#manzana_template').html());
                     map = vis.getNativeMap();
                     cartodb.createLayer(map, 'http://belbo.cartodb.com/api/v1/viz/recursero_lat_long/viz.json')
                             .on('done', function(layer) {
