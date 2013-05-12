@@ -41,3 +41,11 @@ div.cartodb-popup h3 {
 .cartodb-popup-content h3 {
     line-height: 18px;
 }
+
+#manzanas_geojson{
+    polygon-fill: #5CA2D1;
+    polygon-opacity: 0.4;
+    line-width: 1;
+    line-color: #ccc;
+    line-opacity: 1;
+}

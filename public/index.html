@@ -52,6 +52,8 @@
 </script>
 <script>
     $(function() {
+
+        var manzanasIds = [99,43,31,30,51,29,33,42,50,41,28,25,68,69,37,24,40,39,38,46,47,48,49,26];
         var infowindowTemplate = _.template('<div class="infowindow">' +
                 '<div class="infowindow-wrapper">' +
                 '<div class="infowindow-header">' +
@@ -72,21 +74,32 @@
                 '</div>' +
                 '</div>' +
                 '</div>');
-
+        console.log("SELECT * FROM manzanas_geojson WHERE id IN(" + manzanasIds.join(",") +")");        //TODO(gb): Remove trace!!!
         // Load CartoDB map
-        cartodb.createVis('map-canvas', 'http://belbo.cartodb.com/api/v1/viz/recursero_lat_long/viz.json', {
-            zoom: 16
-        })
-                .done(function(vis, layers) {
-                    layers[1].setOptions({
-                        interactivity: "cartodb_id,name,tipo,subtipo,acciones,horario,direccion,descripcion"
-                    });
-                    layers[1].infowindow.set('template', $('#infowindow_template').html());
-                    layers[1].on('featureClick', function(e, pos, latlng, data) {
-                        $("#infowindow").html(infowindowTemplate($.extend(data, {
-                            iconClass: "hola"
-                        })));
-                    });
+        cartodb.createVis('map-canvas', 'http://belbo.cartodb.com/api/v1/viz/manzanas_geojson/viz.json', {
+            center_lat: -34.65506257173085,
+            center_lon:  -58.39426517486573,
+            zoom: 15,
+            infowindow: false,
+            sql: "SELECT * FROM manzanas_geojson WHERE id IN(" + manzanasIds.join(",") +")"
+        }).done(function(vis, layers) {
+                    map = vis.getNativeMap();
+                    cartodb.createLayer(map, 'http://belbo.cartodb.com/api/v1/viz/recursero_lat_long/viz.json')
+                            .on('done', function(layer) {
+                                layer.setOptions({
+                                    interactivity: "cartodb_id,name,tipo,subtipo,acciones,horario,direccion,descripcion"
+                                });
+                                layer.infowindow.set('template', $('#infowindow_template').html());
+                                layer.on('featureClick', function(e, pos, latlng, data) {
+                                    console.log("click");        //TODO(gb): Remove trace!!!
+                                    $("#infowindow").html(infowindowTemplate($.extend(data, {
+                                        iconClass: "hola"
+                                    })));
+                                });
+                                map.addLayer(layer);
+                            }).on('error', function() {
+                                //log the error
+                            });
                 });
     })
 </script>
