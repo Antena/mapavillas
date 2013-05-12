@@ -3,31 +3,27 @@
 <head>
     <title>Mapa de villas</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/assets/css/style.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v2/themes/css/cartodb.css" />
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/assets/css/bootstrap-responsive.min.css"/>
+    <link rel="stylesheet" href="/assets/css/makeitresponsive.css">
+    <link rel="stylesheet" href="/assets/css/style.css"/>
+
+    <script src="http://libs.cartocdn.com/cartodb.js/v2/cartodb.js"></script>
 </head>
 <body>
 
-<div class="container">
+<div class="container-fluid">
     <section>
-        <div class="row">
-            <div class="span12">
-                <h1>Villa 21-24</h1>
-                <p class="lead">[Texto descriptivo del proyecto]</p>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="row">
+        <div class="row-fluid">
             <div class="span8">
-                <div id="map-canvas" class="map">
-
-                </div>
+                <div id="map-canvas" class="map"></div>
             </div>
             <div class="span4">
-                <div class="infowindow well">
-                    <h4>[Nombre de la asociación]</h4>
+                <div id="infowindow" class="sidebar">
+                    <h1>Villa 21-24</h1>
+                    <p class="lead">Mapeamos la villa</p>
                 </div>
             </div>
         </div>
@@ -36,19 +32,12 @@
 
 <script src="/assets/js/jquery-1.9.1.min.js"></script>
 <script src="/assets/js/bootstrap.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbe7jboshIpPhmGCKw0bj5SgiqTYlJ3J4&sensor=true">
-</script>
+<script src="http://libs.cartocdn.com/cartodb.js/v2/cartodb.js"></script>
 <script>
-    function initialize() {
-        var mapOptions = {
-            center: new google.maps.LatLng(-34.652309,-58.391733),
-            zoom: 15,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById("map-canvas"),
-                mapOptions);
-    }
-    google.maps.event.addDomListener(window, 'load', initialize);
+    $(function() {
+        // Load CartoDB map
+        cartodb.createVis('map-canvas', 'http://belbo.cartodb.com/api/v1/viz/osm/viz.json');
+    })
 </script>
 </body>
 </html>
