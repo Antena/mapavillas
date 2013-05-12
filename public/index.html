@@ -36,7 +36,19 @@
 <script>
     $(function() {
         // Load CartoDB map
-        cartodb.createVis('map-canvas', 'http://belbo.cartodb.com/api/v1/viz/osm/viz.json');
+        cartodb.createVis('map-canvas', 'http://belbo.cartodb.com/api/v1/viz/osm/viz.json')
+                .done(function(vis, layers) {
+                    // layer 0 is the base layer, layer 1 is cartodb layer
+                    layers[1].on('featureOver', function(e, latlng, pos, data) {
+                        cartodb.log.log(e, latlng, pos, data);
+                    });
+
+                    // you can also get the map object created by cartodb.js
+                    map = vis.getNativeMap();
+                    // Now, perform any operations you need
+                    // map.setZoom(3)
+                    // map.setCenter(new google.maps.Latlng(...))
+                });
     })
 </script>
 </body>
