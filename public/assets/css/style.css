@@ -11,5 +11,33 @@
     *height:100%;
 }
 
-#infowindow {
+div.cartodb-popup h3 {
+    color: #333;
+    font-size: 13px;
+}
+
+.infowindow {
+    border: solid 4px #ccc;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.infowindow-wrapper {
+    padding: 12px;
+}
+
+.infowindow-header h4 {
+    font-size: 11px;
+    color: #999;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.infowindow-content h3 {
+    margin-top: 0px;
+}
+
+.cartodb-popup-content h3 {
+    line-height: 18px;
 }

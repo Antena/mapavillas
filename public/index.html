@@ -21,9 +21,10 @@
                 <div id="map-canvas" class="map"></div>
             </div>
             <div class="span4">
-                <div id="infowindow" class="sidebar">
+                <div class="sidebar">
                     <h1>Villa 21-24</h1>
                     <p class="lead">Mapeamos la villa</p>
+                    <div id="infowindow"></div>
                 </div>
             </div>
         </div>
@@ -31,23 +32,61 @@
 </div>
 
 <script src="/assets/js/jquery-1.9.1.min.js"></script>
+<script src="/assets/js/underscore-min.js"></script>
 <script src="/assets/js/bootstrap.min.js"></script>
 <script src="http://libs.cartocdn.com/cartodb.js/v2/cartodb.js"></script>
+<script type="infowindow/html" id="infowindow_template">
+    <div class="cartodb-popup">
+        <a href="#close" class="cartodb-popup-close-button close">x</a>
+        <div class="cartodb-popup-content-wrapper">
+            <div class="cartodb-popup-header">
+                <h4>{{content.data.tipo}}</h4>
+            </div>
+            <div class="cartodb-popup-content">
+                <!-- content.data contains the field info -->
+                <h3>{{content.data.name}}</h3>
+            </div>
+        </div>
+        <div class="cartodb-popup-tip-container"></div>
+    </div>
+</script>
 <script>
     $(function() {
-        // Load CartoDB map
-        cartodb.createVis('map-canvas', 'http://belbo.cartodb.com/api/v1/viz/osm/viz.json')
-                .done(function(vis, layers) {
-                    // layer 0 is the base layer, layer 1 is cartodb layer
-                    layers[1].on('featureOver', function(e, latlng, pos, data) {
-                        cartodb.log.log(e, latlng, pos, data);
-                    });
+        var infowindowTemplate = _.template('<div class="infowindow">' +
+                '<div class="infowindow-wrapper">' +
+                '<div class="infowindow-header">' +
+                '<h4><%= tipo %><br/><%= subtipo %></h4>' +
+                '</div>' +
+                '<div class="infowindow-content">' +
+                '<h4><%= name %></h4>' +
+                '<% if (direccion) { %>' +
+                '<p><strong>Dirección:</strong> <%= direccion %></p>' +
+                '<% } %>' +
+                '<p><%= descripcion %></p>' +
+                '<% if (acciones) { %>' +
+                '<br/>' +
+                '<h5>Actividades</h5>' +
+                '<p><%= acciones %></p>' +
+                '<p>Horarios: <%= horario %></p>' +
+                '<% } %>' +
+                '</div>' +
+                '</div>' +
+                '</div>');
 
-                    // you can also get the map object created by cartodb.js
-                    map = vis.getNativeMap();
-                    // Now, perform any operations you need
-                    // map.setZoom(3)
-                    // map.setCenter(new google.maps.Latlng(...))
+        // Load CartoDB map
+        cartodb.createVis('map-canvas', 'http://belbo.cartodb.com/api/v1/viz/recursero_lat_long/viz.json', {
+            zoom: 16
+        })
+                .done(function(vis, layers) {
+                    layers[1].setOptions({
+                        interactivity: "cartodb_id,name,tipo,subtipo,acciones,horario,direccion,descripcion"
+                    });
+                    layers[1].infowindow.set('template', $('#infowindow_template').html());
+                    layers[1].on('featureClick', function(e, pos, latlng, data) {
+                        $("#infowindow").html(infowindowTemplate($.extend(data, {
+                            iconClass: "hola"
+                        })));
+                    });
                 });
     })
 </script>
