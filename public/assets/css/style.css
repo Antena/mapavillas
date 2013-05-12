@@ -48,4 +48,9 @@ div.cartodb-popup h3 {
     line-width: 1;
     line-color: #ccc;
     line-opacity: 1;
+    pointer-events: none;
+}
+
+#recursero_lat_long {
+    z-index: 1000000000000;
 }

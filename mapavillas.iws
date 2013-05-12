@@ -3,12 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="981d8303-e90f-466a-80be-178a66741663" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapavillas.iws" afterPath="$PROJECT_DIR$/mapavillas.iws" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/css/style.css" afterPath="$PROJECT_DIR$/public/assets/css/style.css" />
     </list>
     <ignored path="mapavillas.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="981d8303-e90f-466a-80be-178a66741663" time="1368369922205" ignored="false" />
-    <file path="/index.html" changelist="981d8303-e90f-466a-80be-178a66741663" time="1368389628989" ignored="false" />
-    <file path="/style.css" changelist="981d8303-e90f-466a-80be-178a66741663" time="1368387939023" ignored="false" />
+    <file path="/index.html" changelist="981d8303-e90f-466a-80be-178a66741663" time="1368392206905" ignored="false" />
+    <file path="/style.css" changelist="981d8303-e90f-466a-80be-178a66741663" time="1368391741193" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +76,7 @@
           <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/public/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="29" column="0" selection-start="1508" selection-end="1508" vertical-scroll-proportion="-1.3857404">
+                <state line="121" column="39" selection-start="5510" selection-end="5510" vertical-scroll-proportion="0.38391224">
                   <folding />
                 </state>
               </provider>
@@ -126,7 +128,7 @@
           <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/public/assets/css/style.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="34" column="75" selection-start="499" selection-end="499" vertical-scroll-proportion="0.43493152">
+                <state line="50" column="25" selection-start="763" selection-end="763" vertical-scroll-proportion="0.71746576">
                   <folding />
                 </state>
               </provider>
@@ -585,14 +587,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/assets/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="75" selection-start="499" selection-end="499" vertical-scroll-proportion="0.43493152">
+        <state line="50" column="25" selection-start="763" selection-end="763" vertical-scroll-proportion="0.71746576">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="0" selection-start="1508" selection-end="1508" vertical-scroll-proportion="-1.3857404">
+        <state line="121" column="39" selection-start="5510" selection-end="5510" vertical-scroll-proportion="0.38391224">
           <folding />
         </state>
       </provider>

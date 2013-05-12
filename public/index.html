@@ -54,6 +54,18 @@
         <div class="cartodb-popup-tip-container"></div>
     </div>
 </script>
+<script type="infowindow/html" id="manzana_template">
+    <div class="cartodb-popup">
+        <a href="#close" class="cartodb-popup-close-button close">x</a>
+        <div class="cartodb-popup-content-wrapper">
+            <div class="cartodb-popup-content">
+                <!-- content.data contains the field info -->
+                <h3><strong>Nombre:</strong> {{content.data.name}}</h3>
+            </div>
+        </div>
+        <div class="cartodb-popup-tip-container"></div>
+    </div>
+</script>
 <script>
     $(function() {
 
@@ -79,14 +91,36 @@
                 '</div>' +
                 '</div>');
 
+        var manzanaTemplate = _.template('<div class="infowindow">' +
+                '<div class="infowindow-wrapper">' +
+                '<div class="infowindow-header">' +
+                '<h4><%= tipo %><br/><%= subtipo %></h4>' +
+                '</div>' +
+                '<div class="infowindow-content">' +
+                '<h4><%= name %></h4>' +
+                '<% if (direccion) { %>' +
+                '<p><strong>Dirección:</strong> <%= direccion %></p>' +
+                '<% } %>' +
+                '<p><%= descripcion %></p>' +
+                '<% if (acciones) { %>' +
+                '<br/>' +
+                '<h5>Actividades</h5>' +
+                '<p><%= acciones %></p>' +
+                '<p>Horarios: <%= horario %></p>' +
+                '<% } %>' +
+                '</div>' +
+                '</div>' +
+                '</div>');
+
         // Load CartoDB map
         cartodb.createVis('map-canvas', 'http://belbo.cartodb.com/api/v1/viz/manzanas_geojson/viz.json', {
             center_lat: -34.65506257173085,
             center_lon:  -58.39426517486573,
             zoom: 15,
-            infowindow: false,
+            infowindow: true,
             sql: "SELECT * FROM manzanas_geojson WHERE id IN(" + manzanasIds.join(",") +")"
         }).done(function(vis, layers) {
+                    layers[1].infowindow.set('template', $('#manzana_template').html());
                     map = vis.getNativeMap();
                     cartodb.createLayer(map, 'http://belbo.cartodb.com/api/v1/viz/recursero_lat_long/viz.json')
                             .on('done', function(layer) {
